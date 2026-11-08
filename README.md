@@ -14,9 +14,9 @@ El informe contiene la clasificación de los 20 enunciados y cinco requisitos de
 
 ## Requisitos para compilar
 
-- El compilador Tectonic instalado y disponible en el `PATH`.
 - Python 3.8 o superior.
-- Conexión a internet la primera vez que se compila, para que Tectonic descargue los paquetes LaTeX necesarios. La bibliografía usa el estilo `IEEEtran`.
+- En Windows x64, si Tectonic no está instalado, el script pregunta si quieres instalarlo. Si aceptas, descarga la publicación oficial más reciente, la instala en tu perfil y agrega su carpeta al `PATH` de usuario.
+- Conexión a internet para instalar Tectonic cuando falta y para la primera compilación, que descarga los paquetes LaTeX necesarios. La bibliografía usa el estilo `IEEEtran`.
 
 ## Compilación
 
@@ -26,7 +26,7 @@ El archivo principal es `FORM-TL-01/main.tex`; las referencias están en `FORM-T
 python .\FORM-TL-01\compilar.py
 ```
 
-El script revisa si Tectonic está instalado. Si falta, muestra un mensaje en español con la guía oficial de instalación. Si está disponible, lo ejecuta para procesar el documento, las citas y la bibliografía. Guarda los archivos de compilación en `FORM-TL-01/build/` y deja el PDF final en `FORM-TL-01/main.pdf`.
+El script busca Tectonic y solo pregunta por la instalación cuando no lo encuentra. Si aceptas, descarga el ejecutable desde las publicaciones oficiales de Tectonic, lo instala en `%LOCALAPPDATA%\Programs\Tectonic`, agrega esa carpeta al `PATH` de usuario y sigue con la compilación. Como queda instalado en el `PATH`, no vuelve a preguntar en las siguientes ejecuciones. Guarda los archivos de compilación en `FORM-TL-01/build/` y deja el PDF final en `FORM-TL-01/main.pdf`. En otros sistemas operativos, instala Tectonic siguiendo la [guía oficial](https://tectonic-typesetting.github.io/install.html).
 
 También puedo compilar manualmente con este comando:
 
