@@ -137,6 +137,11 @@ def _find_or_install_tectonic() -> Optional[str]:
     if tectonic:
         return tectonic
 
+    installed_binary = _install_directory() / "tectonic.exe"
+    if sys.platform == "win32" and installed_binary.is_file():
+        _add_to_user_path(installed_binary.parent)
+        return str(installed_binary)
+
     print("No encuentro Tectonic en el PATH.")
     print("Si aceptas, descargaré el ejecutable oficial para Windows x64,")
     print("lo instalaré en tu perfil y lo agregaré al PATH de tu usuario.")

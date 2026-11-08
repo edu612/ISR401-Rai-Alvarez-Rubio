@@ -10,7 +10,7 @@ FORM-TL-01/
 └── compilar.py
 ```
 
-El informe contiene la clasificación de los 20 enunciados y cinco requisitos de calidad cuantificados. La discusión de discrepancias con un compañero queda pendiente para completarla después de hacer esa comparación.
+El informe contiene la clasificación de los 20 enunciados, cinco requisitos de calidad cuantificados y una comparación documental con el trabajo de un compañero. Las resoluciones están redactadas como conclusiones propias, sin atribuirle una conversación o un acuerdo directo.
 
 ## Requisitos para compilar
 
@@ -26,7 +26,7 @@ El archivo principal es `FORM-TL-01/main.tex`; las referencias están en `FORM-T
 python .\FORM-TL-01\compilar.py
 ```
 
-El script busca Tectonic y solo pregunta por la instalación cuando no lo encuentra. Si aceptas, descarga el ejecutable desde las publicaciones oficiales de Tectonic, lo instala en `%LOCALAPPDATA%\Programs\Tectonic`, agrega esa carpeta al `PATH` de usuario y sigue con la compilación. Como queda instalado en el `PATH`, no vuelve a preguntar en las siguientes ejecuciones. Guarda los archivos de compilación en `FORM-TL-01/build/` y deja el PDF final en `FORM-TL-01/main.pdf`. En otros sistemas operativos, instala Tectonic siguiendo la [guía oficial](https://tectonic-typesetting.github.io/install.html).
+El script busca Tectonic en el `PATH` y también revisa `%LOCALAPPDATA%\Programs\Tectonic`, por si la terminal aún no ha cargado el cambio de `PATH`. Solo pregunta si no lo encuentra en ninguno de esos lugares. Si aceptas, descarga el ejecutable desde las publicaciones oficiales de Tectonic, lo instala en esa carpeta, agrega la ruta al `PATH` de usuario y sigue con la compilación. Como reconoce la instalación local en las siguientes ejecuciones, ya no vuelve a preguntar. Guarda los archivos de compilación en `FORM-TL-01/build/` y deja el PDF final en `FORM-TL-01/main.pdf`. En otros sistemas operativos, instala Tectonic siguiendo la [guía oficial](https://tectonic-typesetting.github.io/install.html).
 
 También puedo compilar manualmente con este comando:
 
@@ -43,5 +43,3 @@ Copy-Item build\main.pdf main.pdf -Force
 - `FORM-TL-01/referencias.bib`: referencias usadas, en formato BibTeX.
 - `FORM-TL-01/compilar.py`: script de compilación y verificación de dependencias.
 - `FORM-TL-01/main.pdf`: versión compilada del informe.
-
-El punto de discusión con un compañero queda pendiente para completarlo después de hacer esa comparación.

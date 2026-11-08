@@ -60,25 +60,25 @@ En este informe clasifiqué los veinte enunciados por su intención principal. C
 \bottomrule
 \endlastfoot
 E01 & El paciente podrá reservar una cita eligiendo especialidad, médico, fecha y hora entre los horarios disponibles. & Funcional & -- & Software & Producto: describe la operación de reserva que ofrece la aplicación. \\
-E02 & La plataforma enviará al paciente un recordatorio por mensaje de texto 24 horas antes de su cita. & Funcional & -- & Sistema & Producto: el sistema debe programar y enviar un aviso mediante el servicio de mensajería. \\
+E02 & La plataforma enviará al paciente un recordatorio por mensaje de texto 24 horas antes de su cita. & Funcional & -- & Software & Producto: la aplicación debe programar y enviar el recordatorio mediante el servicio de mensajería. \\
 E03 & La aplicación debe ser rápida. & Calidad & Eficiencia del desempeño: comportamiento temporal & Software & Producto: expresa una expectativa sobre el tiempo de respuesta de la aplicación. \\
 E04 & El recepcionista podrá registrar la llegada del paciente que se acerca a la ventanilla. & Funcional & -- & Software & Producto: define una acción que el recepcionista realiza en la aplicación. \\
 E05 & La plataforma se desarrollará en Java 21 con base de datos PostgreSQL, tecnologías que domina el área de TI. & Restricción tecnológica & -- & Software & Producto: limita las tecnologías que se pueden usar para construir el software. \\
 E06 & El médico podrá consultar la lista de pacientes del día y marcar cada consulta como atendida. & Funcional & -- & Software & Producto: especifica dos operaciones disponibles para el médico. \\
-E07 & Los datos de salud de los pacientes deben estar seguros. & Calidad & Seguridad & Sistema & Producto: la protección abarca la aplicación, la base de datos y el acceso a los datos. \\
+E07 & Los datos de salud de los pacientes deben estar seguros. & Calidad & Seguridad: confidencialidad e integridad & Sistema & Producto: la protección abarca la aplicación, la base de datos y el acceso a los datos. \\
 E08 & La aplicación móvil debe funcionar en teléfonos con Android 10 o superior. & Restricción de plataforma & Compatibilidad: coexistencia & Software & Producto: establece las versiones del entorno móvil que debe soportar la aplicación. \\
 E09 & Una cita cancelada con menos de cuatro horas de anticipación se registrará como inasistencia. & Funcional (regla de negocio) & -- & Software & Producto: indica cómo debe procesar la aplicación una cancelación tardía. \\
 E10 & La plataforma debe ser fácil de usar para los pacientes adultos mayores. & Calidad & Capacidad de interacción (usabilidad) & Software & Producto: expresa una expectativa sobre la interacción de un grupo de usuarios con la aplicación. \\
-E11 & El proyecto debe entregarse en un plazo máximo de seis meses. & Restricción de plazo & -- & Proceso & Proceso: fija el tiempo disponible para ejecutar y entregar el proyecto. \\
-E12 & La sesión de un usuario se cerrará automáticamente tras 10 minutos sin actividad. & Calidad & Seguridad: control de acceso & Software & Producto: el cierre por inactividad reduce el riesgo de que otra persona use una sesión abierta. \\
+E11 & El proyecto debe entregarse en un plazo máximo de seis meses. & Restricción de plazo & -- & Sistema & Proceso: fija el tiempo disponible para entregar el proyecto del sistema. \\
+E12 & La sesión de un usuario se cerrará automáticamente tras 10 minutos sin actividad. & Funcional & -- & Software & Producto: define el cierre automático de una sesión tras un tiempo sin actividad; su finalidad también aporta seguridad. \\
 E13 & El quiosco de la sala de espera leerá el número de cédula ingresado en su pantalla táctil e imprimirá un ticket con el número de turno. & Funcional & -- & Sistema & Producto: combina la aplicación con la pantalla táctil y la impresora para entregar un turno. \\
-E14 & La plataforma debe estar siempre disponible. & Calidad & Fiabilidad: disponibilidad & Sistema & Producto: la disponibilidad debe mantenerse en el servicio completo que utiliza el usuario. \\
+E14 & La plataforma debe estar siempre disponible. & Calidad & Fiabilidad: disponibilidad & Software & Producto: expresa la disponibilidad esperada del servicio de software que utiliza el usuario. \\
 E15 & El director médico podrá generar un reporte mensual de inasistencias por especialidad. & Funcional & -- & Software & Producto: define la generación de un reporte con filtros y periodicidad concretos. \\
-E16 & Cada incremento se validará con el director médico al final de cada iteración de dos semanas. & Restricción de proceso & -- & Proceso de software & Proceso: establece una actividad y una frecuencia para revisar cada incremento. \\
+E16 & Cada incremento se validará con el director médico al final de cada iteración de dos semanas. & Restricción de proceso & -- & Sistema & Proceso: establece una actividad y una frecuencia para validar los incrementos del sistema. \\
 E17 & El tratamiento de los datos personales de los pacientes debe cumplir la Ley Orgánica de Protección de Datos Personales del Ecuador. & Restricción legal & -- & Sistema & Producto: obliga a que el tratamiento de datos en el sistema respete la normativa aplicable \cite{lopdp2021}. \\
 E18 & La plataforma debe integrarse sin problemas con el sistema de facturación actual. & Calidad & Compatibilidad: interoperabilidad & Sistema & Producto: requiere intercambio correcto de información entre la plataforma y otro sistema. \\
 E19 & Si el servidor principal falla, la plataforma debe restablecer el servicio en menos de 30 minutos sin perder ninguna cita confirmada. & Calidad & Fiabilidad: recuperabilidad & Sistema & Producto: define el tiempo de recuperación y la conservación de datos ante una falla. \\
-E20 & Todo cambio en el código fuente será revisado por otro integrante del equipo antes de integrarse a la rama principal. & Restricción de proceso & -- & Proceso de software & Proceso: define una revisión obligatoria antes de integrar cambios al código. \\
+E20 & Todo cambio en el código fuente será revisado por otro integrante del equipo antes de integrarse a la rama principal. & Restricción de proceso & -- & Software & Proceso: define una revisión obligatoria del código antes de integrarlo a la rama principal. \\
 \end{longtable}
 \normalsize
 
@@ -102,17 +102,44 @@ Estos umbrales son propuestas iniciales para que el requisito se pueda comprobar
 \endhead
 \bottomrule
 \endlastfoot
-E03 & Eficiencia del desempeño & Con 200 usuarios concurrentes, el 95\% de las búsquedas y reservas de cita responderá en 2 segundos o menos. & Haría una prueba de carga en un ambiente similar al de producción y mediría el percentil 95 del tiempo de respuesta. \\
-E07 & Seguridad & El 100\% de los datos personales y de salud estará cifrado durante el almacenamiento y la transmisión; el 100\% de los accesos a esos datos requerirá autenticación y quedará registrado. & Revisaría la configuración de almacenamiento y comunicaciones, y compararía los accesos de prueba con el registro de auditoría. \\
+E03 & Eficiencia del desempeño & Con 300 usuarios concurrentes, el 95\% de las búsquedas y reservas de cita responderá en 2 segundos o menos. & Haría una prueba de carga en un ambiente similar al de producción y mediría el percentil 95 del tiempo de respuesta. \\
+E07 & Seguridad & El 100\% de los datos personales y de salud estará cifrado durante el almacenamiento y la transmisión. En una prueba con 100 intentos de acceso no autorizado, no se permitirá ninguna consulta ni modificación exitosa; todos los accesos autorizados quedarán registrados. & Revisaría el cifrado de los datos y haría 100 intentos sin autorización para comprobar que ninguno permite consultar o modificar información; luego verificaría los registros de acceso. \\
 E10 & Capacidad de interacción (usabilidad) & Al menos 18 de 20 participantes de 65 años o más completarán una reserva sin ayuda en un máximo de 3 minutos. & Haría una prueba moderada con 20 participantes y registraría finalización, tiempo y necesidad de ayuda. \\
 E14 & Fiabilidad: disponibilidad & La plataforma tendrá una disponibilidad mensual de al menos 99,9\%, medida durante las 24 horas del día; las ventanas de mantenimiento anunciadas se reportarán por separado. & Calcularía el tiempo disponible dividido para el tiempo total del mes, usando los registros de monitoreo del servicio. \\
 E18 & Compatibilidad: interoperabilidad & En una prueba de 1\,000 operaciones válidas, al menos el 99,5\% se intercambiará automáticamente con facturación y ninguna operación se duplicará. & Compararía los registros de ambos sistemas y verificaría la tasa de éxito y la ausencia de duplicados. \\
 \end{longtable}
 \normalsize
 
-\section*{Alcance de esta entrega}
+\section*{3. Discusión del trabajo de mi compañero}
 
-En esta primera parte completé la clasificación y propuse cinco requisitos medibles. Dejo pendiente la discusión del punto 4: la completaré después de comparar estas respuestas con un compañero y acordar cómo resolver las discrepancias.
+Comparé mi informe con el PDF de mi compañero. Como no fue posible conversar directamente con él, no presento estas resoluciones como acuerdos compartidos: son las decisiones que tomé al revisar ambos trabajos y aplicar los criterios de la actividad.
+
+\small
+\begin{longtable}{@{}p{0.50in}p{3.18in}p{5.55in}@{}}
+\toprule
+\rowcolor{azulclaro}
+\textbf{Código} & \textbf{Diferencia que encontré} & \textbf{Cómo la resolví} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{azulclaro}
+\textbf{Código} & \textbf{Diferencia que encontré} & \textbf{Cómo la resolví} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+E02 & En mi primera versión puse el alcance como Sistema; en la copia aparece como Software. & Lo cambié a Software porque la aplicación es la que programa y envía el SMS mediante la integración de mensajería. \\
+E03 & Mi propuesta inicial medía la respuesta con 200 usuarios concurrentes; la de mi compañero usaba 300. & Adopté 300 usuarios y mantuve el límite de 2 segundos para el percentil 95. Así queda una prueba más exigente y comparable. \\
+E07 & Mi compañero centró la seguridad en los permisos por rol y en evitar accesos no autorizados; yo había propuesto cifrado y registros de acceso. También diferíamos entre Software y Sistema. & Combiné los controles: mantuve el cifrado y los registros, añadí una prueba con 100 intentos no autorizados y fijé cero consultas o cambios exitosos. Dejé el alcance como Sistema porque la protección cubre la aplicación, los datos almacenados y los accesos. \\
+E10 & No encontré una diferencia importante en el objetivo: ambos planteamos que al menos el 90\% de los adultos mayores reserve sin ayuda en 3 minutos. & Conservé mi muestra explícita de 20 participantes: deben completar la tarea al menos 18 de ellos. \\
+E11, E16 y E20 & En mi borrador mezclé el eje Proceso con el alcance del requisito. La copia separa Producto/Proceso de Sistema/Software. & Corregí los ejes: E11 y E16 son de Proceso y tienen alcance de Sistema; E20 es de Proceso y tiene alcance de Software porque se refiere a revisar código. \\
+E12 & Yo lo había clasificado como Calidad-Seguridad; mi compañero lo clasificó como Funcional. & Lo cambié a Funcional porque el enunciado exige una acción observable: cerrar la sesión después de 10 minutos. La seguridad queda como el propósito de esa acción. \\
+E14 & Mi umbral inicial era 99,9\% de disponibilidad y el de mi compañero 99,5\%. También habíamos marcado distinto el alcance. & Mantuve 99,9\% como propuesta inicial más exigente y ajusté el alcance a Software, porque el requisito mide la disponibilidad del servicio de la plataforma. Su viabilidad se tendría que confirmar con el responsable. \\
+E18 & Mi umbral era 99,5\% en 1\,000 operaciones sin duplicados; el de mi compañero era 99\%. Él lo ubicó en Software y yo en Sistema. & Conservé 99,5\% y la muestra de 1\,000 operaciones, con cero duplicados. Mantuve el alcance de Sistema porque la integración involucra la plataforma y el sistema de facturación. \\
+\end{longtable}
+\normalsize
+
+Al cerrar la comparación, actualicé en mi tabla E02, E03, E07, E11, E12, E14, E16 y E20. En E18 mantuve mi clasificación de Sistema y expliqué el motivo.
 
 \bibliographystyle{IEEEtran}
 \bibliography{referencias}
