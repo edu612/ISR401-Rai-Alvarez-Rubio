@@ -1,4 +1,4 @@
-"""Compila el informe y deja el PDF en output/pdf/."""
+"""Compila FORM-TL-01/main.tex y deja el resultado como main.pdf."""
 
 from pathlib import Path
 import shutil
@@ -8,7 +8,6 @@ import sys
 
 ROOT = Path(__file__).resolve().parent
 BUILD = ROOT / "build"
-PDF_DIR = ROOT / "output" / "pdf"
 
 
 def main() -> int:
@@ -21,17 +20,16 @@ def main() -> int:
             "Instálalo siguiendo la guía oficial: "
             "https://tectonic-typesetting.github.io/install.html\n"
             "Después, abre una terminal nueva, comprueba `tectonic --version` "
-            "y vuelve a ejecutar `python compilar.py`.",
+            "y vuelve a ejecutar `python compilar.py` desde FORM-TL-01.",
             file=sys.stderr,
         )
         return 1
 
     BUILD.mkdir(exist_ok=True)
-    PDF_DIR.mkdir(parents=True, exist_ok=True)
 
-    print("Compilando informe.tex con Tectonic...")
+    print("Compilando main.tex con Tectonic...")
     result = subprocess.run(
-        [tectonic, "--outdir", str(BUILD), "informe.tex"],
+        [tectonic, "--outdir", str(BUILD), "main.tex"],
         cwd=ROOT,
         check=False,
     )
@@ -42,12 +40,12 @@ def main() -> int:
         )
         return result.returncode
 
-    compiled_pdf = BUILD / "informe.pdf"
+    compiled_pdf = BUILD / "main.pdf"
     if not compiled_pdf.is_file():
-        print("Tectonic terminó, pero no encuentro build/informe.pdf.", file=sys.stderr)
+        print("Tectonic terminó, pero no encuentro build/main.pdf.", file=sys.stderr)
         return 1
 
-    final_pdf = PDF_DIR / "informe.pdf"
+    final_pdf = ROOT / "main.pdf"
     shutil.copy2(compiled_pdf, final_pdf)
     print(f"PDF creado en: {final_pdf.relative_to(ROOT)}")
     return 0
