@@ -1,0 +1,122 @@
+\documentclass[10pt,letterpaper,landscape]{article}
+
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[landscape,margin=1.15cm]{geometry}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage[table]{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\renewcommand{\arraystretch}{1.16}
+\setlength{\tabcolsep}{3pt}
+\setlength{\LTpre}{4pt}
+\setlength{\LTpost}{4pt}
+\definecolor{azul}{HTML}{174A6E}
+\definecolor{azulclaro}{HTML}{EAF2F7}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[L]{ISR401 - Requisitos de la plataforma de citas médicas}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{document}
+
+\begin{center}
+{\Large\bfseries\color{azul} Clasificación y cuantificación de requisitos}\\
+{\large Plataforma de gestión de citas médicas}
+\end{center}
+
+\textbf{Estudiante:} Rai Alvarez Rubio \hfill
+\textbf{Curso:} ISR401\\
+\textbf{Tarea:} Clasificación y cuantificación de requisitos\\
+\textbf{Fecha límite indicada en la guía:} sábado 31 de octubre de 2026, 23:59
+
+\section*{1. Cómo hice la clasificación}
+
+En este informe clasifiqué los veinte enunciados por su intención principal. Cuando el enunciado describe algo que la plataforma debe hacer, lo marqué como funcional. Cuando habla de una propiedad de calidad, lo relacioné con la característica correspondiente de ISO/IEC 25010:2023 \cite{iso25010}. Si fija tecnologías, compatibilidad, una obligación legal, un plazo o una forma de trabajo, lo marqué como restricción. También indiqué si la obligación recae principalmente sobre el producto o sobre el proceso, y si su alcance es el sistema completo, el software o el proceso de desarrollo.
+
+\section*{2. Clasificación de los veinte enunciados}
+
+\small
+\begin{longtable}{@{}p{0.48in}p{2.25in}p{1.35in}p{1.48in}p{1.00in}p{2.95in}@{}}
+\toprule
+\rowcolor{azulclaro}
+\textbf{Código} & \textbf{Enunciado} & \textbf{Tipo} & \shortstack{\textbf{Característica de}\\\textbf{calidad}} & \textbf{Alcance} & \shortstack{\textbf{Producto/proceso}\\\textbf{y justificación}} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{azulclaro}
+\textbf{Código} & \textbf{Enunciado} & \textbf{Tipo} & \shortstack{\textbf{Característica de}\\\textbf{calidad}} & \textbf{Alcance} & \shortstack{\textbf{Producto/proceso}\\\textbf{y justificación}} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{6}{r}{\small Continúa en la página siguiente}\\
+\endfoot
+\bottomrule
+\endlastfoot
+E01 & El paciente podrá reservar una cita eligiendo especialidad, médico, fecha y hora entre los horarios disponibles. & Funcional & -- & Software & Producto: describe la operación de reserva que ofrece la aplicación. \\
+E02 & La plataforma enviará al paciente un recordatorio por mensaje de texto 24 horas antes de su cita. & Funcional & -- & Sistema & Producto: el sistema debe programar y enviar un aviso mediante el servicio de mensajería. \\
+E03 & La aplicación debe ser rápida. & Calidad & Eficiencia del desempeño: comportamiento temporal & Software & Producto: expresa una expectativa sobre el tiempo de respuesta de la aplicación. \\
+E04 & El recepcionista podrá registrar la llegada del paciente que se acerca a la ventanilla. & Funcional & -- & Software & Producto: define una acción que el recepcionista realiza en la aplicación. \\
+E05 & La plataforma se desarrollará en Java 21 con base de datos PostgreSQL, tecnologías que domina el área de TI. & Restricción tecnológica & -- & Software & Producto: limita las tecnologías que se pueden usar para construir el software. \\
+E06 & El médico podrá consultar la lista de pacientes del día y marcar cada consulta como atendida. & Funcional & -- & Software & Producto: especifica dos operaciones disponibles para el médico. \\
+E07 & Los datos de salud de los pacientes deben estar seguros. & Calidad & Seguridad & Sistema & Producto: la protección abarca la aplicación, la base de datos y el acceso a los datos. \\
+E08 & La aplicación móvil debe funcionar en teléfonos con Android 10 o superior. & Restricción de plataforma & Compatibilidad: coexistencia & Software & Producto: establece las versiones del entorno móvil que debe soportar la aplicación. \\
+E09 & Una cita cancelada con menos de cuatro horas de anticipación se registrará como inasistencia. & Funcional (regla de negocio) & -- & Software & Producto: indica cómo debe procesar la aplicación una cancelación tardía. \\
+E10 & La plataforma debe ser fácil de usar para los pacientes adultos mayores. & Calidad & Capacidad de interacción (usabilidad) & Software & Producto: expresa una expectativa sobre la interacción de un grupo de usuarios con la aplicación. \\
+E11 & El proyecto debe entregarse en un plazo máximo de seis meses. & Restricción de plazo & -- & Proceso & Proceso: fija el tiempo disponible para ejecutar y entregar el proyecto. \\
+E12 & La sesión de un usuario se cerrará automáticamente tras 10 minutos sin actividad. & Calidad & Seguridad: control de acceso & Software & Producto: el cierre por inactividad reduce el riesgo de que otra persona use una sesión abierta. \\
+E13 & El quiosco de la sala de espera leerá el número de cédula ingresado en su pantalla táctil e imprimirá un ticket con el número de turno. & Funcional & -- & Sistema & Producto: combina la aplicación con la pantalla táctil y la impresora para entregar un turno. \\
+E14 & La plataforma debe estar siempre disponible. & Calidad & Fiabilidad: disponibilidad & Sistema & Producto: la disponibilidad debe mantenerse en el servicio completo que utiliza el usuario. \\
+E15 & El director médico podrá generar un reporte mensual de inasistencias por especialidad. & Funcional & -- & Software & Producto: define la generación de un reporte con filtros y periodicidad concretos. \\
+E16 & Cada incremento se validará con el director médico al final de cada iteración de dos semanas. & Restricción de proceso & -- & Proceso de software & Proceso: establece una actividad y una frecuencia para revisar cada incremento. \\
+E17 & El tratamiento de los datos personales de los pacientes debe cumplir la Ley Orgánica de Protección de Datos Personales del Ecuador. & Restricción legal & -- & Sistema & Producto: obliga a que el tratamiento de datos en el sistema respete la normativa aplicable \cite{lopdp2021}. \\
+E18 & La plataforma debe integrarse sin problemas con el sistema de facturación actual. & Calidad & Compatibilidad: interoperabilidad & Sistema & Producto: requiere intercambio correcto de información entre la plataforma y otro sistema. \\
+E19 & Si el servidor principal falla, la plataforma debe restablecer el servicio en menos de 30 minutos sin perder ninguna cita confirmada. & Calidad & Fiabilidad: recuperabilidad & Sistema & Producto: define el tiempo de recuperación y la conservación de datos ante una falla. \\
+E20 & Todo cambio en el código fuente será revisado por otro integrante del equipo antes de integrarse a la rama principal. & Restricción de proceso & -- & Proceso de software & Proceso: define una revisión obligatoria antes de integrar cambios al código. \\
+\end{longtable}
+\normalsize
+
+\textit{Nota.} En E10 conservé la expresión ``fácil de usar'' del enunciado; en la edición 2023 de la norma, la característica se denomina capacidad de interacción. En E03, E07, E10, E14 y E18 el enunciado original no fija una medida de aceptación, por eso propongo umbrales en la siguiente sección.
+
+\section*{3. Requisitos de calidad con medidas y umbrales}
+
+Estos umbrales son propuestas iniciales para que el requisito se pueda comprobar. Antes de tomarlos como compromiso del proyecto, los revisaría con el docente o con el responsable de la plataforma.
+
+\small
+\begin{longtable}{@{}p{0.55in}p{2.45in}p{2.10in}p{3.15in}@{}}
+\toprule
+\rowcolor{azulclaro}
+\textbf{Código} & \textbf{Característica} & \textbf{Requisito cuantificado propuesto} & \textbf{Cómo comprobaría el umbral} \\
+\midrule
+\endfirsthead
+\toprule
+\rowcolor{azulclaro}
+\textbf{Código} & \textbf{Característica} & \textbf{Requisito cuantificado propuesto} & \textbf{Cómo comprobaría el umbral} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+E03 & Eficiencia del desempeño & Con 200 usuarios concurrentes, el 95\% de las búsquedas y reservas de cita responderá en 2 segundos o menos. & Haría una prueba de carga en un ambiente similar al de producción y mediría el percentil 95 del tiempo de respuesta. \\
+E07 & Seguridad & El 100\% de los datos personales y de salud estará cifrado durante el almacenamiento y la transmisión; el 100\% de los accesos a esos datos requerirá autenticación y quedará registrado. & Revisaría la configuración de almacenamiento y comunicaciones, y compararía los accesos de prueba con el registro de auditoría. \\
+E10 & Capacidad de interacción (usabilidad) & Al menos 18 de 20 participantes de 65 años o más completarán una reserva sin ayuda en un máximo de 3 minutos. & Haría una prueba moderada con 20 participantes y registraría finalización, tiempo y necesidad de ayuda. \\
+E14 & Fiabilidad: disponibilidad & La plataforma tendrá una disponibilidad mensual de al menos 99,9\%, medida durante las 24 horas del día; las ventanas de mantenimiento anunciadas se reportarán por separado. & Calcularía el tiempo disponible dividido para el tiempo total del mes, usando los registros de monitoreo del servicio. \\
+E18 & Compatibilidad: interoperabilidad & En una prueba de 1\,000 operaciones válidas, al menos el 99,5\% se intercambiará automáticamente con facturación y ninguna operación se duplicará. & Compararía los registros de ambos sistemas y verificaría la tasa de éxito y la ausencia de duplicados. \\
+\end{longtable}
+\normalsize
+
+\section*{Alcance de esta entrega}
+
+En esta primera parte completé la clasificación y propuse cinco requisitos medibles. Dejo pendiente la discusión del punto 4: la completaré después de comparar estas respuestas con un compañero y acordar cómo resolver las discrepancias.
+
+\bibliographystyle{IEEEtran}
+\bibliography{referencias}
+
+\end{document}
