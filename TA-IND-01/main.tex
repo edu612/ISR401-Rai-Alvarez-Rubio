@@ -1,0 +1,184 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1.6cm]{geometry}
+\usepackage{array,longtable,booktabs,tabularx,enumitem}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\hypersetup{colorlinks=true,linkcolor=azul,urlcolor=azul,citecolor=azul}
+\definecolor{azul}{HTML}{174A6E}
+\definecolor{azulclaro}{HTML}{EAF2F7}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{UTEQ -- Ingeniería de Requerimientos (ISR-401)}
+\fancyhead[R]{TA-IND-01 -- PeiGo}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\begin{document}
+
+\begin{center}
+{\Large\bfseries\color{azul} Análisis de requisitos de PeiGo}\\
+{\normalsize Aplicación de ISO/IEC/IEEE 29148:2018 e ISO/IEC 25010:2023}
+\end{center}
+\textbf{Estudiante:} Rai Alvarez Rubio \hfill \textbf{Asignatura:} ISR-401\\
+\textbf{Tarea:} TA-IND-01 · Requisitos de un sistema real \hfill \textbf{Fecha:} 11 de noviembre de 2026
+
+\section{Sistema elegido: PeiGo}
+Elegí PeiGo porque es una aplicación que uso para distintas operaciones de dinero desde el teléfono. La uso para revisar la cuenta y las tarjetas, y para hacer recargas; en este informe tomo como ejemplo una recarga de Bet593. La aplicación está dirigida a personas que necesitan consultar y mover su dinero desde el celular. Su contexto de uso es principalmente personal y cotidiano: el usuario entra a la app, selecciona una operación, revisa los datos y confirma. El sitio oficial también describe funciones como transferencias, pagos de servicios, recargas, tarjetas y consulta de movimientos \cite{peigoFaq,peigoTerms}. Las capturas que adjunto muestran pantallas de mi propia cuenta, con el saldo oculto.
+
+\section{Resumen analítico de la norma}
+La política pública de PeiGo describe datos operativos y financieros tratados para prestar esas funciones, así que también consideré la privacidad de lo que aparece en pantalla \cite{peigoPrivacy}.
+La cláusula 1 delimita el alcance de la norma: trata los procesos de ingeniería de requisitos para sistemas y software durante su ciclo de vida, y orienta sobre la información que se produce y su contenido. Esto explica por qué el análisis no se queda solo en redactar frases; también considera cómo se documentan y revisan \cite[cl. 1]{iso29148}.
+\subsection{Qué entiendo por un requisito bien formado}
+Al leer la cláusula 5.2 de ISO/IEC/IEEE 29148:2018, me queda claro que un requisito no es simplemente una idea que suena útil. Debe expresar una necesidad de una parte interesada respecto del sistema, con las condiciones y límites necesarios para poder entenderla y comprobarla. La cláusula 3.1.19 relaciona el requisito con una necesidad, sus restricciones y condiciones; además, la cláusula 5.2.4 pide que el enunciado se pueda verificar y que describa lo que necesita el sistema. Por eso, frases como «la app debe ser rápida» todavía no me sirven para aceptar o rechazar una solución: no dicen qué operación se mide ni cuánto tiempo es suficiente \cite{iso29148}.
+
+En mi caso, uso como referencia operaciones que sí aparecen en PeiGo, como las transferencias, la consulta de movimientos, los pagos de servicios y las recargas. Eso me ayuda a plantear requisitos realistas, aunque las medidas que propongo son criterios académicos y no datos publicados por PeiGo. También separo el requisito de sus supuestos: por ejemplo, el tiempo de respuesta debe medirse con una conexión y una versión de app definidas. Si esas condiciones no se aclaran, dos personas podrían evaluar la misma pantalla de forma distinta.
+
+\subsection{Las nueve características de un requisito individual}
+La cláusula 5.2.5 enumera nueve cualidades que usé como lista de revisión. Para mí, \textit{necesario} significa que atiende una necesidad real y que quitarlo dejaría una carencia. \textit{Apropiado} significa que está escrito al nivel correcto y no decide detalles técnicos sin necesidad. \textit{Sin ambigüedad} quiere decir que distintos lectores llegan a la misma interpretación. \textit{Completo} pide que se entienda sin tener que adivinar datos esenciales. \textit{Singular} significa que expresa una sola obligación comprobable. \textit{Factible} exige que pueda realizarse con las restricciones conocidas. \textit{Verificable} permite demostrar su cumplimiento con una prueba, inspección, análisis o demostración. \textit{Correcto} significa que conserva la intención de la necesidad de origen. Finalmente, \textit{conforme} pide respetar la plantilla y las convenciones acordadas \cite[cl. 5.2.5]{iso29148}.
+
+Estas características se apoyan unas a otras. Si mezclo dos acciones en una frase, por ejemplo consultar el saldo y bloquear la tarjeta, no queda claro cuál debe fallar para considerar el requisito incumplido. Si digo «de forma intuitiva», la necesidad quizá sea válida, pero el texto no da una prueba. En esta actividad traté de usar un actor o sistema identificable, un verbo activo y, para calidad, una métrica con umbral y contexto de medición.
+
+También tuve presente que el requisito cambia de nivel según quién necesita el resultado: una necesidad del usuario no siempre tiene el mismo detalle que una especificación para el software. La cláusula 5.2.4 me ayuda a separar el qué del cómo. Pedir que la persona vea el monto y el servicio antes de confirmar define un resultado observable; exigir una librería o una arquitectura concreta sería una decisión de implementación que no justifico aquí. La cláusula 5.2.8.3 presenta el tipo como un atributo útil para agrupar requisitos. Una función puede tener una condición de desempeño asociada, como el tiempo de consulta, pero esa medida no reemplaza a la función que el usuario necesita.
+
+\subsection{Características del conjunto}
+La cláusula 5.2.6 me hizo revisar el grupo completo y no solo cada fila. El conjunto debe ser \textit{completo}, es decir, cubrir lo necesario sin dejar marcadores pendientes; \textit{consistente}, sin obligaciones que se contradigan; \textit{factible} con los recursos, el plazo y la tecnología disponibles; \textit{comprensible} para quienes lo van a usar; y \textit{validable}, de modo que al cumplirlo se atiendan las necesidades de las partes interesadas. En el conjunto de PeiGo propuesto aquí comprobé, por ejemplo, que los requisitos de recarga, historial y comprobante no se contradigan y que cada cifra se pueda observar en una prueba \cite[cl. 5.2.6]{iso29148}.
+
+No puedo afirmar que estos quince requisitos representen todo PeiGo: el trabajo tiene el alcance de las funciones que conozco como usuario. Para mejorar la completitud real haría falta conversar con usuarios, con el equipo de producto y con responsables de pagos y seguridad. Ese límite también afecta la factibilidad: los umbrales de calidad se deben validar con las personas que conocen la operación y la carga real del servicio.
+
+\subsection{Lenguaje ambiguo que debo evitar}
+La cláusula 5.2.7 recomienda escribir qué necesita el sistema y no prescribir cómo implementarlo, salvo que una decisión de diseño sea una restricción justificada. También pide evitar términos vagos porque permiten varias lecturas o no se pueden verificar. Entre las expresiones que revisé están los superlativos (\textit{el mejor}), juicios subjetivos (\textit{fácil}, \textit{amigable}), pronombres sin referente claro, adjetivos como \textit{significativo}, comparaciones como \textit{más rápido}, frases abiertas como \textit{entre otros}, salvedades como \textit{si es posible} y absolutos como \textit{siempre} o \textit{todos}. La conjunción \textit{y/o} también puede esconder alternativas que conviene separar. Asimismo, una referencia externa debería señalar versión o fecha aplicable \cite[cl. 5.2.7]{iso29148}.
+
+No interpreto la lista como un filtro automático: una palabra como «todos» podría ser necesaria en un contexto y estar acotada por un conjunto definido. Aun así, cuando aparece, debo justificarla y darle límites verificables. En mis requisitos evité afirmar «seguro» o «sin problemas» y reemplacé esos juicios por acciones y criterios de aceptación. La norma también distingue requisitos obligatorios de objetivos o preferencias; por eso uso una forma obligatoria en los enunciados de esta propuesta.
+
+\section{Glosario de la cláusula 3}
+Las definiciones siguientes están parafraseadas; los ejemplos son míos y están adaptados a PeiGo \cite[cl. 3.1]{iso29148}.
+\small
+\begin{longtable}{@{}p{0.24\linewidth}p{0.34\linewidth}p{0.36\linewidth}@{}}
+\toprule
+\rowcolor{azulclaro}\textbf{Término (cl.)} & \textbf{Definición en mis palabras} & \textbf{Ejemplo en PeiGo}\\
+\midrule\endfirsthead
+\toprule\rowcolor{azulclaro}\textbf{Término (cl.)} & \textbf{Definición en mis palabras} & \textbf{Ejemplo en PeiGo}\\\midrule\endhead
+Condición (3.1.6) & Circunstancia medible que indica cuándo aplica un requisito. & Una recarga de Bet593 se puede confirmar si el monto está dentro del rango mostrado por la app.\\
+Restricción (3.1.7) & Límite externo que condiciona el diseño, el sistema o su desarrollo. & El pago depende de que el servicio de recargas acepte la operación.\\
+Cliente (3.1.9) & Persona u organización que recibe o podría recibir un producto o servicio. & Una persona que abre una cuenta PeiGo recibe el servicio de la billetera digital.\\
+Requisito derivado (3.1.10) & Requisito inferido al organizar necesidades en una solución concreta. & De la necesidad de consultar gastos se deriva mostrar fecha y monto de cada movimiento.\\
+Requisito (3.1.19) & Enunciado preciso que convierte una necesidad, con condiciones y límites, en algo que se espera del sistema. & La app registra una recarga confirmada en la actividad de la cuenta.\\
+Elicitación (3.1.20) & Actividad sistemática para descubrir y registrar necesidades de clientes y usuarios. & Preguntaría a otros usuarios qué información necesitan revisar antes de confirmar una recarga.\\
+Ingeniería de requisitos (3.1.21) & Trabajo interdisciplinario que establece y mantiene los requisitos del sistema. & El equipo de PeiGo analiza, acuerda y mantiene requisitos de transferencias y pagos.\\
+Gestión de requisitos (3.1.22) & Actividades para identificar, documentar, mantener, comunicar y seguir requisitos. & Un cambio en el comprobante de una recarga queda registrado y vinculado a su requisito.\\
+Trazabilidad (3.1.23) & Registro del origen de un requisito y de cómo se asigna a niveles inferiores. & La necesidad de revisar mis recargas se conecta con la pantalla de actividad y su prueba.\\
+Validación de requisitos (3.1.25) & Confirmación de que los requisitos describen el sistema que necesitan las partes interesadas. & Usuarios revisan un flujo de recarga y confirman que la información previa a pagar les sirve.\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\section{Requisitos propuestos para PeiGo}
+Los quince enunciados que siguen son una propuesta de análisis, no una descripción del diseño interno de PeiGo. Me basé en funciones que muestra la aplicación y su sitio oficial: transferencias, saldo y movimientos, pagos y recargas \cite{peigoFaq,peigoTerms}. Los umbrales de calidad son valores iniciales para que el docente o un responsable los revise. Para que las mediciones sean comparables, propongo medir la app en un teléfono Android 10 o superior, con una conexión estable de al menos 10 Mbit/s, y registrar resultados en una muestra mínima de 100 ejecuciones salvo donde se indique otra población.
+
+\small
+\begin{longtable}{@{}p{0.10\linewidth}p{0.86\linewidth}@{}}
+\toprule\rowcolor{azulclaro}\textbf{ID} & \textbf{Enunciado del requisito}\\\midrule\endfirsthead
+\toprule\rowcolor{azulclaro}\textbf{ID} & \textbf{Enunciado del requisito}\\\midrule\endhead
+R01 & La aplicación deberá mostrar el saldo disponible de la cuenta autenticada cuando el usuario abra la pantalla de inicio.\\
+R02 & La aplicación deberá permitir al usuario consultar sus movimientos por fecha, monto y descripción.\\
+R03 & La aplicación deberá permitir al usuario seleccionar Bet593 como servicio de recarga cuando esa opción esté habilitada en su cuenta.\\
+R04 & Antes de solicitar una recarga, la aplicación deberá mostrar el nombre del servicio y el monto seleccionado para que el usuario los revise.\\
+R05 & La aplicación deberá registrar cada recarga confirmada con fecha, monto, servicio y estado de la operación.\\
+R06 & La aplicación deberá mostrar al usuario un comprobante consultable para cada recarga confirmada.\\
+R07 & En una muestra de 100 consultas de movimientos con conexión estable, el tiempo de respuesta del percentil 95 deberá ser de 3 s o menos.\\
+R08 & Durante un periodo de monitoreo de 30 días, la aplicación deberá estar disponible al menos el 99.5\% del tiempo medido, excluyendo mantenimientos anunciados.\\
+R09 & En una prueba con 20 usuarios adultos que no hayan realizado antes esa tarea, al menos 18 deberán completar una recarga de prueba sin asistencia en menos de 2 min.\\
+R10 & En 100 intentos consecutivos de consulta de saldo con una cuenta autenticada, el sistema deberá presentar el saldo vigente en menos de 3 s en al menos 95 intentos.\\
+R11 & En una muestra de 100 pruebas con interrupción de conexión durante una recarga, la aplicación deberá mostrar el estado de la operación en 100/100 intentos y registrar cero solicitudes duplicadas.\\
+R12 & La aplicación deberá requerir una confirmación explícita antes de enviar una solicitud de recarga al proveedor.\\
+R13 & La aplicación deberá ocultar los dígitos de la tarjeta salvo los últimos cuatro al mostrar sus datos en pantalla.\\
+R14 & Cuando el proveedor confirme el rechazo de una recarga, la aplicación deberá mostrar el estado rechazado en el historial de movimientos en un máximo de 60 s.\\
+R15 & La aplicación deberá exportar un comprobante de recarga en formato PDF que incluya fecha, monto, servicio y estado, sin exponer el número completo de la tarjeta.\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\section{Tabla de clasificación y aceptación}
+Clasifiqué los requisitos por su intención principal usando los ejemplos del atributo tipo de la cláusula 5.2.8.3: funcional/desempeño, interfaz, calidad, usabilidad/calidad en uso y factores humanos. Para los requisitos de calidad indico característica y subcaracterística de ISO/IEC 25010:2023; en esa edición el modelo de producto incluye, entre otras, eficiencia del desempeño, fiabilidad, capacidad de interacción y seguridad \cite[cl. 5.2.8.3]{iso29148} \cite{iso25010}. Las medidas son propuestas académicas, no compromisos públicos de PeiGo.
+\scriptsize
+\begin{longtable}{@{}p{0.05\linewidth}p{0.28\linewidth}p{0.12\linewidth}p{0.20\linewidth}p{0.13\linewidth}p{0.13\linewidth}@{}}
+\toprule\rowcolor{azulclaro}\textbf{ID}&\textbf{Enunciado abreviado}&\textbf{Tipo 5.2.8.3}&\textbf{ISO 25010:2023}&\textbf{Métrica}&\textbf{Aceptación}\\\midrule\endfirsthead
+\toprule\rowcolor{azulclaro}\textbf{ID}&\textbf{Enunciado abreviado}&\textbf{Tipo 5.2.8.3}&\textbf{ISO 25010:2023}&\textbf{Métrica}&\textbf{Aceptación}\\\midrule\endhead
+R01&Mostrar saldo al abrir inicio&Funcional&--&Inspección de pantalla&Saldo visible al usuario autenticado\\
+R02&Consultar movimientos por datos&Funcional&--&Prueba funcional&Filtros por fecha, monto y descripción disponibles\\
+R03&Seleccionar servicio Bet593&Funcional&--&Prueba funcional&Opción visible cuando esté habilitada\\
+R04&Revisar servicio y monto antes de enviar&Factores humanos&Capacidad de interacción / protección ante errores del usuario&Inspección de flujo&Ambos datos se muestran antes de confirmar\\
+R05&Registrar datos de recarga confirmada&Funcional&--&Prueba de registro&Fecha, monto, servicio y estado guardados\\
+R06&Consultar comprobante&Funcional&--&Prueba funcional&Comprobante disponible para recarga confirmada\\
+R07&Respuesta de consulta de movimientos&Funcional y desempeño&Eficiencia del desempeño / comportamiento temporal&Percentil 95&$\leq 3$ s\\
+R08&Disponibilidad de la app&Calidad (no funcional)&Fiabilidad / disponibilidad&Porcentaje en 30 días&$\geq 99.5\%$\\
+R09&Completar recarga sin ayuda&Usabilidad / calidad en uso&Capacidad de interacción / operabilidad&Éxito y tiempo con 20 usuarios nuevos&$\geq 18/20$ en $<2$ min\\
+R10&Respuesta de consulta de saldo&Funcional y desempeño&Eficiencia del desempeño / comportamiento temporal&Intentos dentro de 3 s&$\geq 95/100$\\
+R11&Recuperar una operación interrumpida&Calidad (no funcional)&Fiabilidad / recuperabilidad&100 cortes inducidos&Estado en 100/100; 0 duplicados\\
+R12&Confirmar solicitud de recarga&Calidad (no funcional)&Seguridad / responsabilidad (accountability)&Prueba de flujo&Envío solo tras acción explícita\\
+R13&Enmascarar datos de tarjeta&Calidad (no funcional)&Seguridad / confidencialidad&Inspección de pantalla&Solo los últimos cuatro dígitos visibles\\
+R14&Mostrar rechazo del proveedor&Interfaz&Compatibilidad / interoperabilidad; eficiencia / comportamiento temporal&Demora del estado&$\leq 60$ s desde rechazo confirmado\\
+R15&Exportar comprobante PDF&Funcional&--&Prueba de archivo&PDF con cuatro campos y tarjeta enmascarada\\
+\bottomrule
+\end{longtable}
+\normalsize
+\textit{Nota de alcance:} la cláusula 5.2.8.3 enumera ejemplos de tipos, no una lista cerrada; por eso asigné a cada requisito el tipo que mejor refleja su intención principal. R07 y R10 son funcionales con condición de desempeño asociada.
+
+\section{Autoevaluación y correcciones}
+Revisé cada requisito con las nueve características de la cláusula 5.2.5 y busqué términos de alerta de 5.2.7. La columna de control resume la revisión; la tabla siguiente conserva seis borradores que sí necesité ajustar. En los otros nueve mantuve la versión porque pude identificar una obligación principal y una forma razonable de comprobarla. Esta revisión es propia; para validar que las necesidades son correctas tendría que contrastarlas con más usuarios y con el equipo de PeiGo.
+
+\scriptsize
+\begin{longtable}{@{}p{0.06\linewidth}p{0.37\linewidth}p{0.43\linewidth}p{0.09\linewidth}@{}}
+\toprule\rowcolor{azulclaro}\textbf{ID}&\textbf{Control 5.2.5 (necesario, apropiado, claro, completo, singular, factible, verificable, correcto, conforme)}&\textbf{Revisión de 5.2.7 y decisión}&\textbf{Estado}\\\midrule\endfirsthead
+\toprule\rowcolor{azulclaro}\textbf{ID}&\textbf{Control 5.2.5 (necesario, apropiado, claro, completo, singular, factible, verificable, correcto, conforme)}&\textbf{Revisión de 5.2.7 y decisión}&\textbf{Estado}\\\midrule\endhead
+R01&Los nueve puntos parecen cubiertos; la acción y la pantalla están delimitadas.&Sin absolutos o juicios subjetivos. Retuve la redacción.&Pasa\\
+R02&Singular y comprobable con datos de filtro definidos.&Sin términos vagos. Retuve.&Pasa\\
+R03&Alcance acotado a una opción habilitada; contexto completo.&Evita prometer que el servicio siempre estará habilitado. Retuve.&Pasa\\
+R04&Una obligación principal y punto del flujo explícito.&Lenguaje comprobable. Retuve.&Pasa\\
+R05&Campos y condición de registro definidos.&Sin conjunciones ambiguas; la lista de campos delimita el contenido. Retuve.&Pasa\\
+R06&Una capacidad verificable y con condición de recarga confirmada.&Sin vaguedad. Retuve.&Pasa\\
+R07&Necesario y medible; contexto y umbral indicados.&Percentil y muestra hacen verificable el tiempo. Retuve.&Pasa\\
+R08&La métrica define disponibilidad, el periodo de 30 días y la exclusión de mantenimiento.&«Disponible» queda acotado por porcentaje y periodo. Retuve.&Pasa\\
+R09&Grupo, tarea, tamaño de muestra y umbral definidos.&Reemplacé el juicio «fácil» por éxito y tiempo. Retuve la versión cuantificada.&Pasa\\
+R10&El requisito es singular; define contexto, muestra y límite.&Sin adverbios vagos. Retuve.&Pasa\\
+R11&La recuperación y duplicación se comprueban con 100 casos y conteo de solicitudes.&Evita «sin problemas»; fijé umbral para estado y duplicados. Retuve.&Pasa\\
+R12&Obligación única y verificable por inspección del flujo.&Sin «seguro» genérico. Retuve.&Pasa\\
+R13&Objeto y alcance visible bien acotados.&Evita «datos sensibles» sin precisar. Retuve.&Pasa\\
+R14&Actor de respuesta, estado y límite temporal especificados.&Evita «rápidamente». Retuve.&Pasa\\
+R15&Formato y campos del archivo delimitados.&La seguridad de tarjeta se expresa con una regla concreta. Retuve.&Pasa\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\small
+\begin{longtable}{@{}p{0.08\linewidth}p{0.42\linewidth}p{0.43\linewidth}@{}}
+\toprule\rowcolor{azulclaro}\textbf{ID}&\textbf{Versión inicial que fallaba}&\textbf{Versión corregida aplicada}\\\midrule\endfirsthead
+\toprule\rowcolor{azulclaro}\textbf{ID}&\textbf{Versión inicial que fallaba}&\textbf{Versión corregida aplicada}\\\midrule\endhead
+R07&La consulta de movimientos debe ser rápida.&En una muestra de 100 consultas de movimientos con conexión estable, el tiempo de respuesta del percentil 95 deberá ser de 3 s o menos.\\
+R08&PeiGo debe estar siempre disponible.&Durante un periodo de monitoreo de 30 días, la aplicación deberá estar disponible al menos el 99.5\% del tiempo medido, excluyendo mantenimientos anunciados.\\
+R09&La recarga debe ser fácil de usar para cualquier persona.&En una prueba con 20 usuarios adultos que no hayan realizado antes esa tarea, al menos 18 deberán completar una recarga de prueba sin asistencia en menos de 2 min.\\
+R11&Si se va el internet, la operación debe resolverse bien y no dar problemas.&En una muestra de 100 pruebas con interrupción de conexión durante una recarga, la aplicación deberá mostrar el estado de la operación en 100/100 intentos y registrar cero solicitudes duplicadas.\\
+R12&La aplicación debe pedir confirmación cuando sea necesario.&La aplicación deberá requerir una confirmación explícita antes de enviar una solicitud de recarga al proveedor.\\
+R13&Los datos de las tarjetas deben estar protegidos.&La aplicación deberá ocultar los dígitos de la tarjeta salvo los últimos cuatro al mostrar sus datos en pantalla.\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\section{Reflexión}
+Lo que más me costó fue escribir requisitos de calidad que no se quedaran en palabras como «rápido» o «seguro». Como usuario puedo decir qué me parece lento o confuso, pero esa impresión depende del teléfono, la conexión y la experiencia de cada persona. Por eso tuve que elegir medidas concretas, como el percentil 95 de respuesta o la proporción de usuarios que completa una recarga sin ayuda. Esos números no los encontré publicados por PeiGo: son umbrales iniciales para que la idea se pueda discutir y medir.
+
+También me resultó difícil poner un límite sin decidir cómo debe construirse la app. Por ejemplo, puedo pedir que una recarga no se duplique si se pierde la conexión, pero no debo imponer desde este nivel qué arquitectura o base de datos usar. La norma me sirvió para separar el resultado que espero de la solución técnica. Si este fuera un proyecto real, el siguiente paso sería revisar estos requisitos con usuarios y con el equipo responsable, especialmente los de recuperación, seguridad y disponibilidad.
+
+\clearpage
+\bibliographystyle{IEEEtran}
+\bibliography{referencias}
+\end{document}

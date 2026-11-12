@@ -37,6 +37,29 @@ tectonic --outdir build main.tex
 Copy-Item build\main.pdf main.pdf -Force
 ```
 
+## TA-IND-01 - Análisis de PeiGo
+
+La segunda actividad está organizada así:
+
+```text
+TA-IND-01/
+├── main.tex
+├── main.pdf
+├── referencias.bib
+├── compilar.py
+└── figuras/
+```
+
+Para compilar el informe en Windows desde la raíz del repositorio, ejecuto:
+
+```powershell
+python .\TA-IND-01\compilar.py
+```
+
+El script detecta Tectonic en el `PATH` o en `%LOCALAPPDATA%\Programs\Tectonic`. Si no lo encuentra, pregunta si quiero instalarlo; al aceptar, descarga el ejecutable oficial, lo agrega al `PATH` del usuario y compila el PDF. En ejecuciones posteriores reconoce la instalación y compila directamente. Guarda los auxiliares en `TA-IND-01/build/` y genera el resultado en `TA-IND-01/main.pdf`. Requiere conexión a internet durante la instalación y la primera compilación.
+
+El archivo principal es `TA-IND-01/main.tex`, las referencias están en `TA-IND-01/referencias.bib` y las tres capturas propias de PeiGo están en `TA-IND-01/figuras/`.
+
 ## Contenido
 
 - `FORM-TL-01/main.tex`: informe editable, redactado en primera persona.
