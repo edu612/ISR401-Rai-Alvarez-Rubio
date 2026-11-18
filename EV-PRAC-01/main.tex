@@ -1,8 +1,8 @@
-\documentclass[11pt,letterpaper]{article}
+\documentclass[10pt,letterpaper]{article}
 \usepackage[spanish,es-nodecimaldot]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[margin=1.8cm]{geometry}
+\usepackage[margin=1.55cm]{geometry}
 \usepackage{graphicx}
 \usepackage{array,tabularx,longtable,booktabs}
 \usepackage[table]{xcolor}
@@ -11,48 +11,50 @@
 \usepackage{fancyhdr}
 \hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt}
-\renewcommand{\arraystretch}{1.25}
+\setlength{\parskip}{5pt}
+\renewcommand{\arraystretch}{1.22}
+\setlength{\tabcolsep}{4pt}
 \definecolor{azul}{HTML}{174A6E}
 \definecolor{azulclaro}{HTML}{EAF2F7}
 \pagestyle{fancy}\fancyhf{}
-\fancyfoot[L]{ISR401 -- EV-PRAC-01}\fancyfoot[R]{\thepage}
+\fancyfoot[L]{ISR401 -- EV-PRAC-01}
+\fancyfoot[R]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
 \begin{document}
 \begin{center}
-{\Large\bfseries\color{azul} Transcripción fiel de la prueba escrita a mano}\\
+{\Large\bfseries\color{azul} Evaluación práctica: conceptos y auditoría de requisitos}\\
 {\large Sistema de monitoreo de la cadena de frío (FRIOVAC)}
 \end{center}
 \textbf{Estudiante:} Rai Eduardo Alvarez Rubio\\
-\textbf{Asignatura:} Ingeniería de Requerimientos (ISR-401)\\
+\textbf{Asignatura:} Ingeniería de Requerimientos (ISR-401) \hfill
 \textbf{Actividad:} EV-PRAC-01
 
-Esta es la transcripción fiel de la prueba escrita a mano el 18 de noviembre de 2026; las fotografías de las hojas están en el anexo.
-
 \section*{1. Conceptos aplicados al caso}
-\textbf{A9.} Explique con sus palabras qué es un requisito según ISO/IEC/IEEE 29148 y con esa explicación decida si E4 y E12 son requisitos del producto FRIOVAC. Justifique en una o 2 líneas.
+\textbf{A. Explique con sus palabras qué es un requisito según ISO/IEC/IEEE 29148 y decida si E4 y E12 son requisitos del producto FRIOVAC. Justifique en una o dos líneas.}
 
-\textbf{R:} Ah veo que es una necesidad, capacidad, condición que debe cumplir el sistema para satisfacer a un interesado.
+\textbf{Respuesta:} Un requisito es una necesidad, capacidad o condición que debe cumplir el sistema para satisfacer a un interesado.
 
-\textbf{B.} Explique qué describe la especificación de requisitos de los interesados, la especificación de requisitos del sistema y la especificación de requisitos de software en este proyecto.
+\textbf{B. Explique qué describe la especificación de requisitos de los interesados, la especificación de requisitos del sistema y la especificación de requisitos de software en este proyecto.}
 
-\textbf{R:} La SRS permite saber que necesitan la directora, coordinadora y responsable de vacunatorios, ya que define como debe funcionar FRIOVAC con sensores, comunicación, plataforma web y app móvil.
+\textbf{Respuesta:} La SRS permite saber qué necesitan la directora, la coordinadora y la responsable de vacunatorios, ya que define cómo debe funcionar FRIOVAC con sensores, comunicación, plataforma web y aplicación móvil.
 
-\textbf{C.} Para cada Hecho H1 a H5 indique qué actividad del proceso le corresponde.
-
+\textbf{C. Para cada hecho H1 a H5 indique qué actividad del proceso le corresponde.}
 \begin{tabularx}{\linewidth}{@{}lX@{}}
-H1 = & Elicitación\\
-H2 = & Analisis y negociación\\
-H3 = & Especificación\\
-H4 = & Validación\\
-H5 = & Gestión de requisitos
+\toprule
+\rowcolor{azulclaro}\textbf{Hecho} & \textbf{Actividad del proceso}\\
+\midrule
+H1 & Elicitación\\
+H2 & Análisis y negociación\\
+H3 & Especificación\\
+H4 & Validación\\
+H5 & Gestión de requisitos\\
+\bottomrule
 \end{tabularx}
 
 \section*{2. Clasificación y auditoría}
-\textbf{A9.} Dibuje una tabla con las columnas ID, tipo, documento y justificación y complétela para E1 a E12.
-
+\textbf{A. Complete la tabla para E1 a E12 con ID, tipo, documento y justificación.}
 \small
-\begin{longtable}{@{}p{0.8cm}p{2.4cm}p{2.5cm}p{7.3cm}@{}}
+\begin{longtable}{@{}p{0.65cm}p{2.45cm}p{2.25cm}p{7.2cm}@{}}
 \toprule
 \rowcolor{azulclaro}\textbf{ID} & \textbf{Tipo} & \textbf{Documento} & \textbf{Justificación}\\
 \midrule
@@ -61,49 +63,62 @@ H5 = & Gestión de requisitos
 \rowcolor{azulclaro}\textbf{ID} & \textbf{Tipo} & \textbf{Documento} & \textbf{Justificación}\\
 \midrule
 \endhead
-E1 & Funcional & SRS y SyRS & Establece la necesidad de notificar cuando exista excursión térmica.\\
-E2 & Requisito de dominio & SRS y SyRS & Tiene que conservar entre +2°C y +8°C.\\
+E1 & Funcional & SyRS y SRS & Establece la necesidad de notificar cuando exista una excursión térmica.\\
+E2 & Requisito de dominio & SyRS y SRS & Indica que las vacunas deben conservarse entre +2\,°C y +8\,°C.\\
 E3 & Restricción & SyRS & Establece la comunicación con los sensores.\\
-E4 & Requisito de proceso & Ninguno & Establece presupuesto máximo y fecha límite de entrega.\\
-E5 & Funcional & SRS & Exige generar informes mensuales de temperaturas en formato PDF.\\
-E6 & No funcional fiabilidad & SyRS y SRS & Establece continuidad de registro durante cortes de 8 horas.\\
-E7 & [ilegible] & [ilegible] & Describe el procedimiento manual para el uso de [ilegible].\\
-E8 & No funcional eficiencia de desempeño & SRS & Establece un tiempo máximo de 3 s en [ilegible].\\
-E9 & Restricción & SyRS y SRS & Limita la instalación de la plataforma web a un servidor que usa Linux.\\
-E10 & No funcional capacidad de interacción & SRS & Establece que un usuario nuevo pueda registrar una acción correctiva en máximo 2 minutos.\\
-E11 & No funcional seguridad & SyRS & Exige control de acceso y trazabilidad de las acciones correctivas.\\
-E12 & Requisito de proceso & [ilegible] & Establece la modalidad de entrevista y la aprobación de documento.\\
+E4 & Requisito de proceso & Ninguno & Establece el presupuesto máximo y la fecha límite de entrega del proyecto.\\
+E5 & Funcional & SRS & Exige generar informes mensuales de temperatura en formato PDF.\\
+E6 & No funcional: fiabilidad & SyRS y SRS & Establece la continuidad del registro durante cortes de hasta 8 horas.\\
+E7 & No es un requisito & Ninguno & Describe un procedimiento manual que corresponde al usuario; no expresa una capacidad o condición que deba cumplir el producto. La parte final de la justificación manuscrita no se distingue con claridad.\\
+E8 & No funcional: eficiencia del desempeño & SRS & Establece un tiempo máximo de 3 minutos para completar la acción indicada.\\
+E9 & Restricción & SyRS y SRS & Limita la instalación de la plataforma web a un servidor que utiliza Linux.\\
+E10 & No funcional: capacidad de interacción & SRS & Establece que un usuario nuevo pueda registrar una acción correctiva en un máximo de 2 minutos.\\
+E11 & No funcional: seguridad & SRS & Exige control de acceso y trazabilidad de las acciones correctivas.\\
+E12 & Requisito de proceso & Ninguno & Establece la modalidad de entrevista y la aprobación del documento; se refiere a cómo se realiza y valida el trabajo, no a una función del producto.\\
 \bottomrule
 \end{longtable}
 \normalsize
-\textbf{B9.} Dibuje una tabla con las columnas ID, técnica o construcción problemática, característica de 29148 que incumple, propiedad más específica y justificación.
 
+\textbf{B. Identifique la técnica o construcción problemática, la característica de ISO/IEC/IEEE 29148 que incumple, la propiedad más específica y justifique.}
 \small
-\begin{longtable}{@{}p{0.65cm}p{3.0cm}p{2.5cm}p{2.2cm}p{4.7cm}@{}}
+\begin{longtable}{@{}p{0.55cm}p{2.7cm}p{2.7cm}p{2.15cm}p{4.25cm}@{}}
 \toprule
-\rowcolor{azulclaro}\textbf{ID} & \textbf{Técnica o construcción problemática} & \textbf{Característica de 29148 que incumple} & \textbf{Propiedad más específica} & \textbf{Justificación}\\
+\rowcolor{azulclaro}\textbf{ID} & \textbf{Término o construcción problemática} & \textbf{Característica de 29148 que incumple} & \textbf{Propiedad más específica} & \textbf{Justificación}\\
 \midrule
 \endfirsthead
 \toprule
-\rowcolor{azulclaro}\textbf{ID} & \textbf{Técnica o construcción problemática} & \textbf{Característica de 29148 que incumple} & \textbf{Propiedad más específica} & \textbf{Justificación}\\
+\rowcolor{azulclaro}\textbf{ID} & \textbf{Término o construcción problemática} & \textbf{Característica de 29148 que incumple} & \textbf{Propiedad más específica} & \textbf{Justificación}\\
 \midrule
 \endhead
-B1 & rápido y fácil de usar & [ilegible] & Específico y medible & No dice cuánto tiempo debe tardar el sistema ni cómo se medirá la facilidad de uso.\\
-B2 & alertas oportunas y temperatura adecuada & [ilegible] & Específico y medible & No define los límites de temperatura ni el medio de comunicación.\\
-B3 & En todo momento, sin energía ni conexión inalámbrica. & Portable, cumple y aprobado & Trazable & Impone una tecnología y un procedimiento sin una justificación.\\
-B4 & MongoDB alojada en la nube de AWS & Apropiado y necesario & Trazable & Promete un funcionamiento ilimitado.\\
-B5 & si es posible, Excel, CSV, etc. & [ilegible] & Específico y medible & Lo expresa como condición no establece una obligación.\\
-B6 & condición mejor que 10 o 0 °C & Bien formado & Cumple la propiedad SMART & Define condición, sujeto y plus verificable.\\
+B1 & Rápido y fácil de usar & No ambiguo & Específico y medible & No indica cuánto tiempo debe tardar el sistema ni cómo se medirá la facilidad de uso.\\
+B2 & Alertas oportunas y temperatura adecuada & No ambiguo & Específico y medible & No define el tiempo de envío de las alertas ni los límites concretos de temperatura.\\
+B3 & En todo momento, sin energía ni conexión inalámbrica & Factible, completo y aprobado & Trazable & Impone que el sistema funcione sin energía ni conexión, pero no explica cómo se lograría ni justifica esa condición.\\
+B4 & MongoDB alojada en la nube de AWS & Apropiado y necesario & Trazable & Fija una tecnología y un proveedor de nube sin explicar por qué son necesarios para el requisito.\\
+B5 & Si es posible, Excel, CSV, etc. & No ambiguo & Específico y medible & La expresión deja la obligación como opcional y no define con claridad qué formatos se deben entregar.\\
+B6 & Condición es mayor que 10 o 0\,°C & Bien formado & Cumple la propiedad SMART & La condición debe expresar con claridad el sujeto, el límite y una forma verificable de comprobarla.\\
 \bottomrule
 \end{longtable}
 \normalsize
+\textit{Nota de transcripción:} Se conservaron las respuestas y clasificaciones que se alcanzan a leer en las hojas. En los pocos fragmentos cuya escritura no permite una lectura segura, se indica expresamente; no se completaron con datos supuestos.
 
 \clearpage
 \appendix
-\section*{Anexo. Fotografías de las hojas originales}
-Las siguientes imágenes se incluyen completas y en el mismo orden en que fueron entregadas.
-\begin{figure}[H]\centering\includegraphics[width=0.94\textwidth,height=0.78\textheight,keepaspectratio]{evidencias/hoja-01.jpg}\caption{Hoja 1}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=0.94\textwidth,height=0.78\textheight,keepaspectratio]{evidencias/hoja-02.jpg}\caption{Hoja 2}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=0.94\textwidth,height=0.78\textheight,keepaspectratio]{evidencias/hoja-03.jpg}\caption{Hoja 3}\end{figure}
-\begin{figure}[H]\centering\includegraphics[width=0.94\textwidth,height=0.78\textheight,keepaspectratio]{evidencias/hoja-04.jpg}\caption{Hoja 4}\end{figure}
+\section*{Anexo. Fotografías originales de la evaluación}
+Las cuatro páginas siguientes reproducen las hojas entregadas, en el mismo orden y sin sustituirlas por la transcripción.
+\begin{figure}[H]\centering
+\includegraphics[width=\textwidth,height=0.79\textheight,keepaspectratio]{evidencias/hoja-01.jpg}
+\caption{Hoja original 1}
+\end{figure}
+\begin{figure}[H]\centering
+\includegraphics[width=\textwidth,height=0.79\textheight,keepaspectratio]{evidencias/hoja-02.jpg}
+\caption{Hoja original 2}
+\end{figure}
+\begin{figure}[H]\centering
+\includegraphics[width=\textwidth,height=0.79\textheight,keepaspectratio]{evidencias/hoja-03.jpg}
+\caption{Hoja original 3}
+\end{figure}
+\begin{figure}[H]\centering
+\includegraphics[width=\textwidth,height=0.79\textheight,keepaspectratio]{evidencias/hoja-04.jpg}
+\caption{Hoja original 4}
+\end{figure}
 \end{document}
