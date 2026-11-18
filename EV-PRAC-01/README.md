@@ -1,25 +1,24 @@
 # EV-PRAC-01 – Evaluación práctica
 
-Transcripción de la prueba escrita a mano y fotografías de las hojas originales.
+Documento de la evaluación del sistema de monitoreo de la cadena de frío (FRIOVAC). Incluye la transcripción de las respuestas y las cuatro fotografías originales como anexo.
 
 ## Archivos
 
-- `main.tex`: transcripción en LaTeX.
-- `main.pdf`: documento compilado, con el anexo fotográfico.
-- `evidencias/`: fotografías de las cuatro hojas, en orden.
-- `compilar.py`: script para generar el PDF.
+- `main.tex`: documento fuente en LaTeX.
+- `main.pdf`: documento compilado.
+- `compilar.py`: script para compilar el documento.
+- `evidencias/`: fotografías originales de las cuatro hojas.
 
 ## Requisitos
 
-- Python 3.8 o superior.
-- Tectonic instalado y disponible en el `PATH`.
+Se necesita Python 3 y uno de estos compiladores: Tectonic o pdfLaTeX.
 
 ## Compilación
 
-Desde la raíz del repositorio, ejecutar:
+Desde la raíz del repositorio:
 
-```powershell
-python .\EV-PRAC-01\compilar.py
+```bash
+python EV-PRAC-01/compilar.py
 ```
 
-El PDF actualizado se guarda en `EV-PRAC-01/main.pdf`.
+El PDF generado se guarda en `EV-PRAC-01/main.pdf`.
